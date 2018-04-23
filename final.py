@@ -5,6 +5,14 @@ test
 import random
 items = []
 
+#Item DEFINITIONS
+gold  = 1
+log = 2
+metal = 3
+axe = 4
+pickaxe = 5
+sword = 6
+
 on = 90
 
 off = 91
@@ -18,7 +26,7 @@ Defining all the locations:
 city = "City"
 forest = "Forest"
 forest_nw = "Northwestern Forest"
-huntershack = "Hunter's Shack"
+logger = "Logger's Shack"
 blacksmith = "Blacksmith's shop"
 cave = "Mined out Cave"
 lakefront = "Lakefront"
@@ -29,9 +37,13 @@ command = ""
 
 location = city
 
-items.append("sword")
+items.append(log)
 '''
 TRAVELING MECHANICS
+'''
+
+'''
+CITY
 '''
 while game == on:
     while location == city:
@@ -57,7 +69,6 @@ while game == on:
             print("You have traveled to the " + location)
         else:
             print("Invalid Option")
-            
     while location == forest:
         print("You are in the " + location)
         print("To the South is the City")
@@ -73,11 +84,11 @@ while game == on:
             location = forest_nw
             print("You have traveled to the " + location)
         elif command == "E" or command == "e":
-            location = huntershack
+            location = logger
             print("You have traveled to the " + location)
         else:
             print("Invalid Option")
-
+#NORTHWEST FOREST
     while location == forest_nw:
         print("You are in the " + location)
         print("To the South is the Cave")
@@ -93,7 +104,7 @@ while game == on:
             print("You have traveled to the " + location)
         else:
             print("Invalid Option")
-
+#CAVE
     while location == cave:
         print("You're in the " + location)
         print("To the South is the lake front")
@@ -112,7 +123,7 @@ while game == on:
             location = city
         else:
             print("Invalid Option")
-
+#LAKEFRONT
     while location == lakefront:
         print("You're in the " + location)
         print("To the North is the Cave")
@@ -128,12 +139,44 @@ while game == on:
             print("You have traveled to the " + location)
         else:
             print("Invalid Option")
-
+#MERCHANT HUT
     while location == merchanthut:
         print("You are in the " + location)
         print("To the North is the City")
         print("To the West is the Lake Front")
         print("To the East is the Boss' Dungeon")
+        while pickaxe not in items:
+            print("You can trade with the merchant")
+            print("Where would you like to go?")
+            print("Choose your direction using N, W, or E, or T")
+            print("Where would you like to go?")
+            print("Choose your direction using N, W, or E")
+            command = input("")
+            if command == "N" or command == "n":
+                location = city
+                print("You have traveled to the " + location)
+            elif command == "W" or command == "w":
+                location = lakefront
+                print("You have traveled to the " + location)
+            elif command == "E" or command == "e":
+                location = bossdungeon
+                print("You have traveled to the " + location)
+            elif command == "T" or command == "Trade":
+                if log in items:
+                    print("You can trade 1 log for a pickaxe")
+                    print("What would you like to do?")
+                    print("Y / N ")
+                    command == input("")
+                    if command == "Y":
+                        print("You traded for a pickaxe")
+                        items.remove(log)
+                        items.append(pickaxe)
+                    elif command == "N" or command == "n":
+                        print("You didn't buy a pickaxe")
+                else:
+                    print("You don't have the required items to purchase a pickaxe")
+            else:
+                print("Invalid Option")
         print("Where would you like to go?")
         print("Choose your direction using N, W, or E")
         command = input("")
@@ -146,10 +189,24 @@ while game == on:
         elif command == "E" or command == "e":
             location = bossdungeon
             print("You have traveled to the " + location)
+        elif command == "T" or command == "Trade":
+            if log in items:
+                print("You can trade 1 log for a pickaxe")
+                print("What would you like to do?")
+                print("Y / N ")
+                command == input("")
+                if command == "Y":
+                    print("You traded for a pickaxe")
+                    items.remove(log)
+                    items.append(pickaxe)
+                elif command == "N" or command == "n":
+                    print("You didn't buy a pickaxe")
+            else:
+                print("You don't have the required items to purchase a pickaxe")
         else:
             print("Invalid Option")
-
-    while location == huntershack:
+          
+    while location == logger:
         print("You are in the " + location)
         print("To the West is the Forest")
         print("To the South is the Blacksmith's Shop")
@@ -180,7 +237,7 @@ while game == on:
             location = city
             print("You have traveled to the " + location)
         elif command == "N" or command == "n":
-            location = huntershack
+            location = logger
             print("You have traveled to the " + location)
         else:
             print("Invalid Option")
@@ -217,7 +274,7 @@ while game == on:
                     print("You have traveled to the " + location)
                 else:
                     print("Invalid Option")
-            else:a
+            else:
                 print("Invalid Option")
 
 
