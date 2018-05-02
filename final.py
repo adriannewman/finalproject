@@ -5,6 +5,14 @@ test
 import random
 items = []
 
+#Item DEFINITIONS
+gold  = 1
+log = 2
+metal = 3
+axe = 4
+pickaxe = 5
+sword = 6
+
 on = 90
 
 off = 91
@@ -18,7 +26,7 @@ Defining all the locations:
 city = "City"
 forest = "Forest"
 forest_nw = "Northwestern Forest"
-huntershack = "Hunter's Shack"
+logger = "Logger's Shack"
 blacksmith = "Blacksmith's shop"
 cave = "Mined out Cave"
 lakefront = "Lakefront"
@@ -29,9 +37,13 @@ command = ""
 
 location = city
 
-items.append("sword")
+items.append(log)
 '''
 TRAVELING MECHANICS
+'''
+
+'''
+CITY
 '''
 while game == on:
     while location == city:
@@ -40,7 +52,7 @@ while game == on:
         print("To the South is a travelling merchant's hut")
         print("To the West is a Blacksmith's shop")
         print("To the East is an abandoned mineshaft")
-        print("Where would you like to go?")
+        
         print("Input using N , W , S , or E")
         command = input("")
         if command == "N" or command == "n":
@@ -57,13 +69,12 @@ while game == on:
             print("You have traveled to the " + location)
         else:
             print("Invalid Option")
-            
     while location == forest:
         print("You are in the " + location)
         print("To the South is the City")
         print("To the West is more forest")
-        print("To the East is the Hunter's shack")
-        print("Where would you like to go?")
+        print("To the East is the Logger's Shack")
+        
         print("Choose your direction using S , W , or E.")
         command = input("")
         if command == "S" or command == "s":
@@ -73,16 +84,16 @@ while game == on:
             location = forest_nw
             print("You have traveled to the " + location)
         elif command == "E" or command == "e":
-            location = huntershack
+            location = logger
             print("You have traveled to the " + location)
         else:
             print("Invalid Option")
-
+#NORTHWEST FOREST
     while location == forest_nw:
         print("You are in the " + location)
         print("To the South is the Cave")
         print("To the East is the Forest")
-        print("Where would you like to go?")
+        
         print("Choose your direction using S ,  or E.")
         command = input("")
         if command == "S" or command == "s":
@@ -93,13 +104,13 @@ while game == on:
             print("You have traveled to the " + location)
         else:
             print("Invalid Option")
-
+#CAVE
     while location == cave:
         print("You're in the " + location)
         print("To the South is the lake front")
         print("To the North is the Northwestern Forest")
         print("To the West is the City center")
-        print("Where would you like to go?")
+        
         print("Choose your direction using N , S , or E")
         command = input("")
         if command == "S" or command == "s":
@@ -112,12 +123,12 @@ while game == on:
             location = city
         else:
             print("Invalid Option")
-
+#LAKEFRONT
     while location == lakefront:
         print("You're in the " + location)
         print("To the North is the Cave")
         print("To the West is the Merchant's hut")
-        print("Where would you like to go?")
+        
         print("Choose your direction using N or E")
         command = input("")
         if command == "N" or command == "n":
@@ -128,14 +139,13 @@ while game == on:
             print("You have traveled to the " + location)
         else:
             print("Invalid Option")
-
+#MERCHANT HUT
     while location == merchanthut:
         print("You are in the " + location)
         print("To the North is the City")
         print("To the West is the Lake Front")
         print("To the East is the Boss' Dungeon")
-        print("Where would you like to go?")
-        print("Choose your direction using N, W, or E")
+       
         command = input("")
         if command == "N" or command == "n":
             location = city
@@ -146,14 +156,30 @@ while game == on:
         elif command == "E" or command == "e":
             location = bossdungeon
             print("You have traveled to the " + location)
+        elif command == "t" or command == "T":
+            if "gold" in items:
+                print("You can purchase an Axe")
+                print("The axe will cost 'gold'")
+                print("Would you like to purchase the axe?")
+                print("Y / N")
+                command = input("")
+                if command == "Y" or command == "y":
+                    print("You have purchased the Axe!")
+                    itmes.remove("gold")
+                    items.append("Axe")
+                elif command == "N" or command == "n":
+                    print("You didn't purchase the Axe..")
+                else:
+                    print("Invalid option")
+                
         else:
             print("Invalid Option")
-
-    while location == huntershack:
+          
+    while location == logger:
         print("You are in the " + location)
         print("To the West is the Forest")
         print("To the South is the Blacksmith's Shop")
-        print("Where would you like to go?")
+        
         print("Choose your direction using W , or S")
         command = input("")
         if command == "S" or command == "s":
@@ -169,9 +195,7 @@ while game == on:
         print("You are in the " + location)
         print("To the West is the City")
         print("To the South is the Boss Dungeon")
-        print("To the North is the Hunter's Shack")
-        print("Where would you like to go?")
-        print("Choose your direction using N , S , or W")
+        print("To the North is the Logger's Shack")
         command = input("")
         if command == "S" or command == "s":
             location = bossdungeon
@@ -180,8 +204,24 @@ while game == on:
             location = city
             print("You have traveled to the " + location)
         elif command == "N" or command == "n":
-            location = huntershack
+            location = logger
             print("You have traveled to the " + location)
+        elif command == "t" or command == "T":
+            if "metal" and "log" in items:
+                print("You have enough resources to purchase a sword!")
+                print("It costs one metal and one log")
+                print("Y / N")
+                command == input("")
+                if command == "Y" or command == "y":
+                    print("You purchased the sword!")
+                    items.remove("metal")
+                    items.remove("log")
+                    items.append("sword")
+                    print(items)
+                elif command == "N" or command "n":
+                    print("You didn't buy the sword.. ")
+                else:
+                    print("Invalid Option")
         else:
             print("Invalid Option")
 
@@ -206,7 +246,7 @@ while game == on:
                 print("You are in the " + location)
                 print("To the North is the Blacksmith Shop")
                 print("To the West is the Merchant's hut")
-                print("Where would you like to go?")
+                
                 print("Choose your direction using N or W")
                 command = input("")
                 if command == "N" or command == "n":
@@ -217,7 +257,7 @@ while game == on:
                     print("You have traveled to the " + location)
                 else:
                     print("Invalid Option")
-            else:a
+            else:
                 print("Invalid Option")
 
 
