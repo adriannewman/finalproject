@@ -52,7 +52,6 @@ while game == on:
         print("To the South is a travelling merchant's hut")
         print("To the West is a Blacksmith's shop")
         print("To the East is an abandoned mineshaft")
-        
         print("Input using N , W , S , or E")
         command = input("")
         if command == "N" or command == "n":
@@ -67,6 +66,20 @@ while game == on:
         elif command == "W" or command == "w":
             location = cave
             print("You have traveled to the " + location)
+        elif command == "EX" or command == "ex" or command == "eX" or command == "Ex":
+            if "gold" not in items:
+                print("You can explore the area for gold")
+                print("Y / N")
+                command = input("")
+                if command == "Y" or command == "y":
+                    print("You explored the area and found one peice of gold.")
+                    items.append("gold")
+                elif command == "N" or command == "n":
+                    print("You didn't explore")
+                else:
+                    print("Invalid Option")
+            else:
+                print("You've already explored!")
         else:
             print("Invalid Option")
     while location == forest:
@@ -86,6 +99,20 @@ while game == on:
         elif command == "E" or command == "e":
             location = logger
             print("You have traveled to the " + location)
+        elif command == "H" or command == "h":
+            if "log" not in items:
+                print("You can harvest wood")
+                print("Y / N")
+                command = input("")
+                if command == "Y" or command == "y":
+                    print("You harvested wood")
+                    items.append("log")
+                elif command == "N" or command == "n":
+                    print("You didn't harvest wood")
+                else:
+                    print("Invalid Option")
+            else:
+                print("You already harvested from this location! Try another one")
         else:
             print("Invalid Option")
 #NORTHWEST FOREST
@@ -102,6 +129,20 @@ while game == on:
         elif command == "E" or command == "e":
             location = forest
             print("You have traveled to the " + location)
+        elif command == "H" or command == "h":
+            if "log" not in items:
+                print("You can harvest wood")
+                print("Y / N")
+                command = input("")
+                if command == "Y" or command == "y":
+                    print("You harvested wood")
+                    items.append("log")
+                elif command == "N" or command == "n":
+                    print("You didn't harvest wood")
+                else:
+                    print("Invalid Option")
+            else:
+                print("You already harvested from this location! Try another one")
         else:
             print("Invalid Option")
 #CAVE
@@ -157,18 +198,18 @@ while game == on:
             location = bossdungeon
             print("You have traveled to the " + location)
         elif command == "t" or command == "T":
-            if "gold" in items:
-                print("You can purchase an Axe")
-                print("The axe will cost 'gold'")
-                print("Would you like to purchase the axe?")
+            if "log" in items:
+                print("You can purchase an pickaxe")
+                print("The axe will cost 'log'")
+                print("Would you like to purchase the pickaxe?")
                 print("Y / N")
                 command = input("")
                 if command == "Y" or command == "y":
-                    print("You have purchased the Axe!")
-                    itmes.remove("gold")
-                    items.append("Axe")
+                    print("You have purchased the pickaxe!")
+                    items.remove("log")
+                    items.append("pickaxe")
                 elif command == "N" or command == "n":
-                    print("You didn't purchase the Axe..")
+                    print("You didn't purchase the pickaxe..")
                 else:
                     print("Invalid option")
                 
@@ -181,6 +222,7 @@ while game == on:
         print("To the South is the Blacksmith's Shop")
         
         print("Choose your direction using W , or S")
+        
         command = input("")
         if command == "S" or command == "s":
             location = blacksmith
@@ -188,6 +230,21 @@ while game == on:
         elif command == "W" or command == "w":
             location = forest
             print("You have traveled to the " + location)
+        elif command == "T" or command == "t":
+            if "gold" in items:
+                print("You can purchase the the axe")
+                print("It will cost 1 gold")
+                print("Y / N")
+                command = input("")
+                if command == "Y" or command == "y":
+                    print("You purchased the axe")
+                    items.remove("gold")
+                    items.append("axe")
+                    print(items)
+                elif command == "N" or command == "n":
+                    print("You didn't purchase the axe")
+            else:
+                print("You can't purchase the axe")
         else:
             print("Invalid Option")
 
@@ -218,7 +275,7 @@ while game == on:
                     items.remove("log")
                     items.append("sword")
                     print(items)
-                elif command == "N" or command "n":
+                elif command == "N" or command == "n":
                     print("You didn't buy the sword.. ")
                 else:
                     print("Invalid Option")
